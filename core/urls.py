@@ -6,9 +6,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from .views import health_check, api_info
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # Health check and API info
+    path('api/health/', health_check, name='health_check'),
+    path('api/info/', api_info, name='api_info'),
     
     # API Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
