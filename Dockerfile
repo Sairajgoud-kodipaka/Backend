@@ -31,5 +31,16 @@ RUN python manage.py collectstatic --noinput
 # Expose port
 EXPOSE $PORT
 
-# Run the application
-CMD gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120 
+# Create a startup script
+RUN echo '#!/bin/bash\n\
+echo "Starting Django application..."\n\
+echo "Running database migrations..."\n\
+python manage.py migrate\n\
+echo "Creating superuser..."\n\
+python manage.py create_superuser\n\
+echo "Starting Gunicorn..."\n\
+exec gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120\n\
+' > /app/start.sh && chmod +x /app/start.sh
+
+# Run the startup script
+CMD ["/app/start.sh"] 
