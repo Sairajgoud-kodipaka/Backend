@@ -18,26 +18,10 @@ services:
         value: "https://jewellery-crm-frontend.vercel.app,http://localhost:3000,http://localhost:3001"
       - key: CSRF_TRUSTED_ORIGINS
         value: "https://jewellery-crm-frontend.vercel.app,http://localhost:3000,http://localhost:3001"
-      - key: DB_NAME
-        fromDatabase:
-          name: jewellery-crm-db
-          property: database
-      - key: DB_USER
-        fromDatabase:
-          name: jewellery-crm-db
-          property: user
-      - key: DB_PASSWORD
-        fromDatabase:
-          name: jewellery-crm-db
-          property: password
-      - key: DB_HOST
-        fromDatabase:
-          name: jewellery-crm-db
-          property: host
-      - key: DB_PORT
-        fromDatabase:
-          name: jewellery-crm-db
-          property: port
+      - key: CORS_ALLOW_ALL_ORIGINS
+        value: "false"
+      - key: DATABASE_URL
+        value: "postgresql://jewellery_crm_db_user:XpRN4xurPZeQTHAVKWtE3UXGOHs3Fo0T@dpg-d27ebaeuk2gs73e2sbg0-a/jewellery_crm_db"
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: JWT_ACCESS_TOKEN_LIFETIME
@@ -55,9 +39,9 @@ services:
       - key: EMAIL_BACKEND
         value: "django.core.mail.backends.console.EmailBackend"
       - key: CELERY_BROKER_URL
-        value: "redis://localhost:6379/0"
+        value: "memory://"
       - key: CELERY_RESULT_BACKEND
-        value: "redis://localhost:6379/0"
+        value: "rpc://"
 
 databases:
   - name: jewellery-crm-db

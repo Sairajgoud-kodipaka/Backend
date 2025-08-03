@@ -29,7 +29,7 @@ RUN mkdir -p /app/media /app/staticfiles /app/logs
 RUN python manage.py collectstatic --noinput
 
 # Expose port
-EXPOSE 8000
+EXPOSE $PORT
 
 # Run the application
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120"] 
+CMD gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120 
