@@ -16,5 +16,20 @@ else
     echo "DATABASE_URL not set, skipping migrations"
 fi
 
+
+
 # Create superuser if it doesn't exist (optional)
-# python manage.py createsuperuser --noinput --username admin --email admin@example.com || true 
+python manage.py createsuperuser --noinput --username admin --email admin@example.com || true
+
+# Set password for admin user
+python manage.py shell -c "
+from django.contrib.auth import get_user_model
+User = get_user_model()
+try:
+    user = User.objects.get(username='admin')
+    user.set_password('admin123')
+    user.save()
+    print('Admin password set successfully')
+except User.DoesNotExist:
+    print('Admin user not found')
+" 
