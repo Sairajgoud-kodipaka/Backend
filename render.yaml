@@ -15,9 +15,9 @@ services:
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
       - key: CORS_ALLOWED_ORIGINS
-        value: "https://backend-kqxl.onrender.com,http://localhost:3000,http://localhost:3001"
+        value: "https://jewellery-crm-frontend.vercel.app,http://localhost:3000,http://localhost:3001"
       - key: CSRF_TRUSTED_ORIGINS
-        value: "https://backend-kqxl.onrender.com,http://localhost:3000,http://localhost:3001"
+        value: "https://jewellery-crm-frontend.vercel.app,http://localhost:3000,http://localhost:3001"
       - key: CORS_ALLOW_ALL_ORIGINS
         value: "false"
       - key: DATABASE_URL
