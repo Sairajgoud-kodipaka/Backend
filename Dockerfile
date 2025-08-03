@@ -33,13 +33,16 @@ EXPOSE $PORT
 
 # Create a startup script
 RUN echo '#!/bin/bash\n\
-echo "Starting Django application..."\n\
-echo "Running database migrations..."\n\
-python manage.py migrate\n\
-echo "Creating superuser..."\n\
+set -e\n\
+echo "🚀 Starting Django application..."\n\
+echo "📊 Running database migrations..."\n\
+python manage.py migrate --verbosity=2\n\
+echo "👤 Creating superuser..."\n\
 python manage.py create_superuser\n\
-echo "Starting Gunicorn..."\n\
-exec gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120\n\
+echo "🔧 Setting up demo data..."\n\
+python setup_users.py || echo "Demo users setup completed or skipped"\n\
+echo "🌐 Starting Gunicorn..."\n\
+exec gunicorn core.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120 --access-logfile -\n\
 ' > /app/start.sh && chmod +x /app/start.sh
 
 # Run the startup script
