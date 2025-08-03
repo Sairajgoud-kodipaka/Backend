@@ -15,13 +15,13 @@ services:
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
       - key: CORS_ALLOWED_ORIGINS
-        value: "https://jewellery-crm-frontend.vercel.app,http://localhost:3000,http://localhost:3001"
+        value: "https://backend-kqxl.onrender.com,http://localhost:3000,http://localhost:3001"
       - key: CSRF_TRUSTED_ORIGINS
-        value: "https://jewellery-crm-frontend.vercel.app,http://localhost:3000,http://localhost:3001"
+        value: "https://backend-kqxl.onrender.com,http://localhost:3000,http://localhost:3001"
       - key: CORS_ALLOW_ALL_ORIGINS
         value: "false"
       - key: DATABASE_URL
-        value: "postgresql://jewellery_crm_db_user:XpRN4xurPZeQTHAVKWtE3UXGOHs3Fo0T@dpg-d27ebaeuk2gs73e2sbg0-a/jewellery_crm_db"
+        value: "postgresql://jewellery_crm_db_6lhq_user:00tT3WerKiPOn89oEfpzytXdcqRHnCJa@dpg-d27ekt0gjchc7384eov0-a/jewellery_crm_db_6lhq"
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: JWT_ACCESS_TOKEN_LIFETIME
